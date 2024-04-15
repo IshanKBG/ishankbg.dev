@@ -1,16 +1,113 @@
 ---
+import Base from "../components/base.astro"
+export const BLOG_DATA = [
+	{
+		title: 'Blog 1',
+		date: '01/01/2024',
+		slug: 'example',
+	},
+	{
+		title: 'Blog 2',
+		date: '02/01/2024',
+		slug: 'example',
+	},
+	{
+		title: 'Blog 3',
+		date: '03/01/2024',
+		slug: 'example',
+	},
+	{
+		title: 'Blog 4',
+		date: '04/01/2024',
+		slug: 'example',
+	},
+	{
+		title: 'Blog 5',
+		date: '05/01/2024',
+		slug: 'example',
+	}
+]
+export const LINKS = [
+	{
+		title: 'GitHub',
+		url: 'https://github.com/IshanKBG',
+	},
+	{
+		title: 'Twitter',
+		url: 'https://twitter.com/IshanKBG'
+	},
+	{
+		title: 'LinkedIn',
+		url: 'https://linkedin.com/IshanKBG'
+	},
+	{
+		title: 'Email',
+		url: 'mailto:me@ishankbg.dev'
+	},
+	{
+		title: 'RSS',
+		url: '/feed.xml'
+	}
+]
 
+export const SKILLS = [
+	'JavaScript',
+	'TypeScript',
+	'Node.js',
+	'React',
+	'Docker',
+	'Rust',
+	'Python',
+	'C',
+	'C++',
+	"Linux",
+	"Go",
+	'PostgreSQL',
+	'MySQL',
+]
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base>
+
+		<div class="flex flex-col gap-4 mb-4">
+			<p class="text-[#] text-3xl font-bold">
+				Ishan Jaiswal
+			</p>
+
+			<p class="text-[#FBF0C6]">
+				Passionate Computer Programmer
+			</p>
+		</div>
+<div class="flex flex-col gap-4" aria-label="Recent Articles">
+	<h2 class="text-[#d6bf64] text-xl font-bold">
+		Recent Articles
+	</h2>
+	<div class="flex flex-col gap-4">
+		{BLOG_DATA.map((blog)=> (
+			<div>
+				• {blog.date } -
+				<a class="text-[#FFA8CE]" href=`/blog/${blog.slug}`>
+					{blog.title}
+				</a>
+			</div>
+		))}
+	</div>
+</div>
+	<div class="flex flex-col gap-4" aria-label="Quick Links">
+		<h2 class="text-[#d6bf64] text-xl font-bold">
+			Quick Links
+		</h2>
+
+		<div class="flex flex-col">
+			{LINKS.map((link)=> (
+				<div>
+					•
+					<a class="text-[#FFA8CE]" href=`${link.url}`>
+						{ link.title }
+					</a>
+				</div>
+			))}
+
+		</div>
+	</div>
+</Base>
