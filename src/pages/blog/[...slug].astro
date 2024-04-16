@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../../components/base.astro";
-import type {InferGetStaticParamsType} from "astro";
+import type {InferGetStaticPropsType} from "astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -9,7 +9,7 @@ export async function getStaticPaths() {
         params: { slug: entry.slug }, props: { entry },
     }));
 }
-const { entry } = Astro.props as InferGetStaticParamsType<typeof getStaticPaths> ;
+const { entry } = Astro.props as InferGetStaticPropsType<typeof getStaticPaths> ;
 const { Content } = await entry.render();
 ---
 <Base>
