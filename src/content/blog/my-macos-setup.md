@@ -5,3 +5,4 @@ pubDate: 2024-08-16
 tags: [macos, productivity, development, iterm2, zsh]
 
 ---
+Hi
