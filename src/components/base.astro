@@ -1,5 +1,6 @@
 ---
 import {Image} from "astro:assets"
+import "@fontsource/jetbrains-mono";
 import { ViewTransitions } from "astro:transitions";
 ---
 <html>
@@ -33,4 +34,10 @@ import { ViewTransitions } from "astro:transitions";
 </div>
 
 </body>
+<style is:global>
+    body {
+        font-family: "JetBrains Mono",sans-serif;
+    }
+
+</style>
 </html>

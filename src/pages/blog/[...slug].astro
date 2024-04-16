@@ -1,0 +1,18 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../components/base.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+    return posts.map(entry => ({
+        params: { slug: entry.slug }, props: { entry },
+    }));
+}
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+<Base>
+    <article class="prose px-2 md:px-4 py-2 md:py-4 text-white text-md antialiased">
+       <Content />
+    </article>
+</Base>
