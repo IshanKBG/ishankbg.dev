@@ -3,7 +3,11 @@ import  Layout  from "../../components/BaseLayout.astro";
 import { getCollection } from "astro:content";
 const allPosts = await getCollection("blog");
 ---
-<Layout>
+<Layout
+ title="Blog"
+ description="A collection of articles written by me."
+ url=`${Astro.site}/blog`
+>
     <div class="flex flex-col gap-4" aria-label="Recent Articles">
         <h2 class="text-[#d6bf64] text-xl">
             Articles
@@ -11,7 +15,7 @@ const allPosts = await getCollection("blog");
         <div class="flex flex-col gap-4">
             {allPosts.map((blog)=> (
                     <article>
-                        • <time datetime={new Date(blog.data.pubDate.toISOString())}>{ new Date(blog.data.pubDate).toLocaleDateString() }</time> -
+                        • <time datetime={new Date(blog.data.pubDate).toISOString()}>{new Date(blog.data.pubDate).toLocaleDateString()}</time> -
                         <a class="text-[#FFA8CE]" href=`/blog/${blog.slug}`>
                             {blog.data.title}
                         </a>
