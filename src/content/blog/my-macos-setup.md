@@ -60,7 +60,7 @@ The above command will install both docker desktop and docker daemon.
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-By the these are some recommended plugins that you should install to improve your terminal experience.
+By the way these are some recommended plugins that you should install to improve your terminal experience.
 ```sh
  brew install zsh-autosuggestions zsh-syntax-highlighting
 ```
