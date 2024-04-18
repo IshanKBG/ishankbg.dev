@@ -83,7 +83,7 @@ p10k configure
 
 # Essential Development Tools
 
-Since my work is mostly related to creating softwares I have to install certain tools.
+Since my work is mostly related to creating softwares so I have to install certain tools.
 Here are the tools I use on a regular basis
 
 1. Install NodeJs
