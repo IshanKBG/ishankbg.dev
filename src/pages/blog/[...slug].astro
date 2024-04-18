@@ -10,12 +10,12 @@ export async function getStaticPaths() {
     }));
 }
 const { entry } = Astro.props as InferGetStaticPropsType<typeof getStaticPaths> ;
-const { Content } = await entry.render();
+const { Content } = await entry.render();;
 ---
 <Layout
         title={entry.data.title}
         description={entry.data.description}
-        keywords={entry.data.tags.join(', ')}
+        keywords={entry.data.tags}
         url={`https://ishankbg.dev/blog/${entry.slug}`}
 >
     <Schema

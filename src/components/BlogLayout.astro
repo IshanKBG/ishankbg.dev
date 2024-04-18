@@ -1,7 +1,8 @@
 ---
 import Base from "./BaseLayout.astro"
 let formatter = new Intl.ListFormat('en', { style: 'long', type: 'conjunction' });
-let keywords = formatter.format(Astro.props.tags);
+let keywords = formatter.format(Astro.props.keywords);
+console.log(keywords);
 ---
 <Base
         title={Astro.props.title}
