@@ -1,0 +1,116 @@
+---
+title: Setting up my new macOS
+description: This is how I configured my macOS.
+tags:
+  - macOS
+  - terminal
+  - oh
+  - my
+  - zsh
+  - iterm2
+  - docker
+isDraft: true
+pubDate: 2023-04-18
+---
+
+# Introduction:
+Setting up a new macOS system can be an exciting yet daunting task. There are numerous configuration options and software choices available, making it crucial to tailor your setup to your specific needs. In this post, I will share my initial macOS setup, which includes essential applications and configurations that have helped me boost productivity and enhance my overall user experience.
+# System Preferences:
+   - Appearance: I prefer using the "Dark" mode for a sleek and minimalistic look.
+   - Dock: Position it on the left side of the screen for better screen utilization.
+   - Hot Corners: Assign useful actions like activating Mission Control or putting the display to sleep by moving the cursor to specific corners of the screen.
+   - Trackpad > Tap to click
+   - Keyboard > Key Repeat > Fast (all the way to the right)
+  - Keyboard > Delay Until Repeat > Short (all the way to the right)
+# Essential Software:
+   - Homebrew: A package manager that simplifies the installation of various command-line tools and applications.
+   - iTerm2: A powerful replacement for the default Terminal application with advanced features like split panes and customizability.
+   - Neovim: It has been my favourite editor since last 2 years and I really love it's versatile ecosystem.
+   - Firefox: My preferred web browser due to its speed, stability, focus on privacy and extensive range of extensions.
+   - Docker Desktop: I use docker containers all the time to run services like Postgres and Redis locally for my work.
+   So let's setup these essential softwares.
+   
+1. Install homebrew
+```sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+2. Install neovim
+```sh
+brew install ripgrep neovim
+```
+
+3.  Install Firefox and iterm2
+```sh
+brew install --cask firefox iterm2
+```
+
+4. Install Docker Desktop
+```sh
+brew install --cask docker
+```
+The above command will install both docker desktop and docker daemon.
+
+# Terminal Setup:
+   - Oh My Zsh: A framework that enhances the default Zsh shell with helpful plugins, themes, and auto-completion capabilities.
+   - Nerd Font: Jetbrains Mono
+   - Theme: I use Powelevel10k because of its speed and out of the box experience.
+1. Install Oh My Zsh
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+By the these are some recommended plugins that you should install to improve your terminal experience.
+```sh
+ brew install zsh-autosuggestions zsh-syntax-highlighting
+```
+
+2. Install Nerd Font
+```sh
+brew tap homebrew/cask-fonts
+brew install font-fontname-nerd-font
+```
+Replace `fontname` with your preferred nerd font.
+3. Install Powerlevel10k
+```sh
+brew install powerlevel10k
+echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
+echo "ZSH_THEME="powerlevel10k/powerlevel10k"" >>~/.zshrc
+# Restart zsh and configure the theme
+exec zsh
+p10k configure
+```
+
+# Essential Development Tools
+
+Since my work is mostly related to creating softwares I have to install certain tools.
+Here are the tools I use on a regular basis
+
+1. Install NodeJs
+```sh
+brew install nodejs
+```
+2. Install Python
+macOS already comes with it's own version of python. To prevent conflicts we will install `pyenv` to install and different python versions.
+```sh
+# Recommended dependencies before installing pyenv
+brew install openssl readline sqlite3 xz zlib
+brew install pyenv
+echo 'alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'' >> ~/.zshrc
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+# Replace x with your preferred version of python
+pyenv install 3.x.x
+pyenv shell 3.x.x
+```
+3.  Install rust
+```sh
+ brew install rust
+```
+4. Install git
+```sh
+brew install git
+```
+
+So this was how I did my initial setup. I hope this post helps you to setup your own macOS for software development.
