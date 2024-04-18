@@ -10,8 +10,6 @@ const blogCollection = defineCollection({
         isDraft: z.boolean(),
     }
 });
-
 export const collection = {
    blog:  blogCollection
 }
-
