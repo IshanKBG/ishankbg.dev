@@ -60,7 +60,7 @@ export const SKILLS = [
 	<div class="flex flex-col gap-4">
 		{allPosts.map((blog)=> (
 			<div>
-				• { new Date(blog.data.pubDate).toLocaleDateString() } -
+				• <time datetime={ new Date(blog.data.pubDate).toISOString()}>{ new Date(blog.data.pubDate).toLocaleDateString() }</time> -
 				<a class="text-[#FFA8CE]" href=`/blog/${blog.slug}`>
 					{ blog.data.title }
 				</a>
