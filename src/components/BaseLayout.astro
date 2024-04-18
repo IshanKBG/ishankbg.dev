@@ -11,7 +11,7 @@ import avatar from "../assets/avatar.webp";
                 rel="alternate"
                 type="application/rss+xml"
                 title={Astro.props.title}
-                href={`${Astro.site}rss.xml`}
+                href={`${Astro.site}feed.xml`}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
@@ -30,9 +30,9 @@ import avatar from "../assets/avatar.webp";
         </div>
 
         <div class="flex flex-col md:flex-row md:gap-4">
-            <a href="/blog" class="text-[#FBF0C6] mt-2 md:mt-0">Blog</a>
-            <a href="/resume" class="text-[#FBF0C6]">Resume</a>
-            <a href="/about" class="text-[#FBF0C6]">About</a>
+            <a href="/blog" class="text-[#FBF0C6] mt-2 md:mt-0" data-astro-prefetch>Blog</a>
+            <a href="/resume" class="text-[#FBF0C6]" data-astro-prefetch>Resume</a>
+            <a href="/about" class="text-[#FBF0C6]" data-astro-prefetch>About</a>
         </div>
     </header>
     <main class="flex flex-col gap-4">

@@ -65,7 +65,7 @@ export const SKILLS = [
 		{allPosts.map((blog)=> (
 			<div>
 				• <time datetime={ new Date(blog.data.pubDate).toISOString()}>{ new Date(blog.data.pubDate).toLocaleDateString() }</time> -
-				<a class="text-[#FFA8CE]" href=`/blog/${blog.slug}`>
+				<a class="text-[#FFA8CE]" href=`/blog/${blog.slug}` data-astro-prefetch>
 					{ blog.data.title }
 				</a>
 			</div>

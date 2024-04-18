@@ -16,7 +16,7 @@ const allPosts = await getCollection("blog");
             {allPosts.map((blog)=> (
                     <article>
                         • <time datetime={new Date(blog.data.pubDate).toISOString()}>{new Date(blog.data.pubDate).toLocaleDateString()}</time> -
-                        <a class="text-[#FFA8CE]" href=`/blog/${blog.slug}`>
+                        <a class="text-[#FFA8CE]" href=`/blog/${blog.slug}` data-astro-prefetch>
                             {blog.data.title}
                         </a>
                     </article>

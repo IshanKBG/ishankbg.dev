@@ -7,6 +7,7 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: "https://ishankbg.dev",
+  prefetch: true,
   integrations: [tailwind(), mdx(), sitemap()],
   markdown: {
     shikiConfig: {
