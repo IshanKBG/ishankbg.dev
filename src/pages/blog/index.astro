@@ -15,8 +15,8 @@ const allPosts = await getCollection("blog");
                         <a class="text-[#FFA8CE]" href=`/blog/${blog.slug}`>
                             {blog.data.title}
                         </a>
-                    </div>
+                    </article>
             ))}
         </div>
     </div>
-</Base>
+</Layout>
