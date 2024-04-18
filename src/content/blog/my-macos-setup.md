@@ -91,6 +91,7 @@ Here are the tools I use on a regular basis
 brew install nodejs
 ```
 2. Install Python
+
 macOS already comes with it's own version of python. To prevent conflicts we will install `pyenv` to install and different python versions.
 ```sh
 # Recommended dependencies before installing pyenv
