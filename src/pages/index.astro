@@ -1,5 +1,5 @@
 ---
-import Base from "../components/base.astro";
+import Layout from "../components/BaseLayout.astro";
 import { getCollection } from "astro:content";
 const allPosts = await getCollection("blog");
 export const LINKS = [
@@ -42,9 +42,9 @@ export const SKILLS = [
 ]
 ---
 
-<Base>
+<Layout title="Home">
 
-		<div class="flex flex-col gap-4 mb-4">
+		<section class="flex flex-col gap-4 mb-4">
 			<p class="text-[#] text-3xl font-bold">
 				Ishan Jaiswal
 			</p>
@@ -52,8 +52,8 @@ export const SKILLS = [
 			<p class="text-[#FBF0C6]">
 				Passionate Computer Programmer
 			</p>
-		</div>
-<div class="flex flex-col gap-4" aria-label="Recent Articles">
+		</section>
+<section class="flex flex-col gap-4" aria-label="Recent Articles">
 	<h2 class="text-[#d6bf64] text-xl font-bold">
 		Recent Articles
 	</h2>
@@ -67,8 +67,8 @@ export const SKILLS = [
 			</div>
 		))}
 	</div>
-</div>
-	<div class="flex flex-col gap-4" aria-label="Quick Links">
+</>
+	<section class="flex flex-col gap-4" aria-label="Quick Links">
 		<h2 class="text-[#d6bf64] text-xl font-bold">
 			Quick Links
 		</h2>
@@ -84,8 +84,8 @@ export const SKILLS = [
 			))}
 
 		</div>
-	</div>
-	<div class="flex flex-col gap-4">
+	</>
+	<section class="flex flex-col gap-4">
 		<h2 class="text-[#d6bf64] text-xl font-bold">
 			Skills
 		</h2>
@@ -96,5 +96,5 @@ export const SKILLS = [
 				</div>
 			))}
 		</div>
-	</div>
-</Base>
+	</section>
+</>

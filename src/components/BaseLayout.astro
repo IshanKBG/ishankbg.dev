@@ -1,0 +1,50 @@
+---
+import "@fontsource/jetbrains-mono";
+import { ViewTransitions } from "astro:transitions";
+import avatar from "../assets/avatar.webp";
+---
+<html lang="en">
+    <head>
+        <title>{Astro.props.title}</title>
+        <link rel="sitemap" href="/sitemap-index.xml" />
+        <link
+                rel="alternate"
+                type="application/rss+xml"
+                title={Astro.props.title}
+                href={`${Astro.site}rss.xml`}
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta name="description" content={Astro.props.description}>
+        <meta name="keywords" content={Astro.props.tags}>
+        <meta name="author" content="Ishan Jaiswal">
+        <link rel="canonical" href={Astro.props.url}>
+        <ViewTransitions />
+        <slot name="head" />
+    </head>
+    <body class="bg-[#1E2021] text-[#FBF0C6] min-w-full min-h-screen flex flex-col p-1 px-[5vw] md:px-[20vw] gap-8 mx-auto">
+    <header class="flex bg-[#32302F] p-4 w-full rounded-lg mx-auto items-center justify-between md:">
+        <div class="flex items-center">
+            <img src={avatar.src} class="rounded-lg" alt="Logo" width="50" height="50" />
+            <a href="/" class="text-lg font-bold ml-2 md:ml-0">IshanKBG</a>
+        </div>
+
+        <div class="flex flex-col md:flex-row md:gap-4">
+            <a href="/blog" class="text-[#FBF0C6] mt-2 md:mt-0">Blog</a>
+            <a href="/resume" class="text-[#FBF0C6]">Resume</a>
+            <a href="/about" class="text-[#FBF0C6]">About</a>
+        </div>
+    </header>
+    <main class="flex flex-col gap-4">
+        <slot />
+    </main>
+    <footer>
+        <p class="text-center">© {new Date().getFullYear()} Ishan Jaiswal</p>
+    </footer>
+    </body>
+    <style is:global>
+        body {
+            font-family: "JetBrains Mono",sans-serif;
+        }
+    </style>
+</html>

@@ -1,16 +1,16 @@
 ---
-import  Base  from "../../components/base.astro";
+import  Layout  from "../../components/BaseLayout.astro";
 import { getCollection } from "astro:content";
 const allPosts = await getCollection("blog");
 ---
-<Base>
+<Layout>
     <div class="flex flex-col gap-4" aria-label="Recent Articles">
         <h2 class="text-[#d6bf64] text-xl">
             Articles
         </h2>
         <div class="flex flex-col gap-4">
             {allPosts.map((blog)=> (
-                    <div>
+                    <article>
                         • { new Date(blog.data.pubDate).toLocaleDateString() } -
                         <a class="text-[#FFA8CE]" href=`/blog/${blog.slug}`>
                             {blog.data.title}
