@@ -1,13 +1,12 @@
 ---
-layout: '../components/BaseLayout.astro'
 title: 'About'  
 description: 'About me and this blog'
 ---
-import { Image } from "astro:assets";
+import Layout from "../components/BaseLayout.astro";
 import avatar from "../assets/pic.jpeg";
 
-<Image src={avatar} alt="Ishan Jaiswal" class="object-center" />
-
+<img src={avatar.src} alt="Ishan Jaiswal" />
+<Layout title="About" description="About me and this blog">
 My name is **Ishan Jaiswal**, though I sometimes use the handle _**ishankbg**_ online.
 I'm a student and part-time computer programmer from India and I love to create unique and innovative softwares.
 I'm currently working at [ReMod Limited](remod.dev) on various projects. My work and side projects mostly involve working on applications at low level using Rust and C
@@ -18,3 +17,4 @@ I created this blog to share my thoughts, experiences and knowledge with the wor
 In general I try to create content that is both helpful and unique.
 This blog is completely open-source and you can find the source code [here](https://github.com/IshanKBG/ishankbg.dev).
 If you have any questions or suggestions, feel free to reach out to me on my [email](mailto:contact@ishankbg.dev)
+</Layout>
