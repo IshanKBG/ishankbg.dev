@@ -7,8 +7,9 @@ const parser = new MarkdownIt();
 export const GET  = async (context: APIContext) => {
     const blog = await getCollection('blog');
     return rss({
+        xmlns: { atom: "http://www.w3.org/2005/Atom" },
         title: "Ishan's Blog",
-        description: "My blog's rss feed",
+        description: "I am a computer programmer and a tech enthusiast. I write about programming, tech, and other things that interest me.",
         stylesheet: "/styles.xsl",
         site: context.site!,
         items: blog.map((post) => ({
@@ -18,6 +19,7 @@ export const GET  = async (context: APIContext) => {
             content: sanitizeHtml(parser.render(post.body), {
                 allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
             }),
+            tags: post.data.tags,
             customData: post.data.customData,
             link: `/blog/${post.slug}/`,
         })),
