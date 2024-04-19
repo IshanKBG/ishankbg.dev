@@ -9,7 +9,7 @@ tags:
   - zsh
   - iterm2
   - docker
-isDraft: true
+isDraft: false
 pubDate: 2023-04-18
 ---
 
