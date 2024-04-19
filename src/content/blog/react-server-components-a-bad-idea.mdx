@@ -92,7 +92,18 @@ Another thing that should be accounted for is, the existence of **Turbopack**, m
 Checkout Evan You's [benchmark](https://github.com/yyx990803/vite-vs-next-turbo-hmr) where he debunks these claims made by Vercel. 
 > Hey, isn't caching in **Next.js** good like other advertised features?
 
-Contrary to popular belief as usual, no, it is not; rather it is far more than what it should have been. **Next.js** by default caches *everything*, and to not cache means you need to explicitly opt yourself out of caching things, which makes it really easy to shoot yourself in the foot in a lot of cases, and if I really wanted to shoot myself in the foot, why not use **C++** for that instead? This tweet by Flavio explains why it's so bad, another thing to note is that there is a GitHub [Discussion](https://github.com/Vercel/next.js/discussions/54075) which really concerns me on why this is what to is; Sad reality, honestly.
+Contrary to popular belief as usual, no, it is not; rather it is far more than what it should have been. **Next.js** by default caches *everything*, and to not cache means you need to explicitly opt yourself out of caching things, which makes it really easy to shoot yourself in the foot in a lot of cases, and if I really wanted to shoot myself in the foot, why not use **C++** for that instead?
+When you're aiming to bypass caching for individual data fetches, setting the `cache` option to `no-store` does the trick:
+```tsx
+fetch(`https://...`, { cache: 'no-store' })
+```
+Now, to circumvent caching at the route level, delve into the [Route Segment Config options](https://nextjs.org/docs/app/building-your-application/caching#segment-config-options). Here's how you can handle it:
+```tsx
+export const dynamic = 'force-dynamic'
+```
+However, there's another option using the unstable API called [unstable_noStore](https://nextjs.org/docs/app/api-reference/functions/unstable_noStore) to opt out of caching at the component level. They recommend folks to utilize this over I get where you're coming from. Sometimes, all you want is to fetch dynamic data without worrying about caching. It seems like these options make things a bit more convoluted than necessary, doesn't it?
+It's very easy to serve stale data to the user or even share private data by mistake because it's shared and persistent if you are not careful.
+This tweet by Flavio explains why it's so bad, another thing to note is that there is a GitHub [Discussion](https://github.com/Vercel/next.js/discussions/54075) which really concerns me on why this is what to is; Sad reality, honestly.
 
 <Tweet id="https://x.com/flaviocopes/status/1736317822609887362" />
 # Remix Loaders and Data Fetching
