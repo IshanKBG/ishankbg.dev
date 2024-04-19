@@ -2,23 +2,24 @@
 import "@fontsource/jetbrains-mono";
 import { ViewTransitions } from "astro:transitions";
 import avatar from "../assets/avatar.webp";
+const {title, description, keywords, url} = Astro.props || Astro.props.frontmatter;
 ---
 <html lang="en">
     <head>
-        <title>{Astro.props.title}</title>
+        <title>{title}</title>
         <link rel="sitemap" href="/sitemap-index.xml" />
         <link
                 rel="alternate"
                 type="application/rss+xml"
-                title={Astro.props.title}
+                title={title}
                 href={`${Astro.site}feed.xml`}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
-        <meta name="description" content={Astro.props.description}>
-        <meta name="keywords" content={Astro.props.keywords}>
+        <meta name="description" content={description}>
+        <meta name="keywords" content={keywords}>
         <meta name="author" content="Ishan Jaiswal">
-        <link rel="canonical" href={Astro.props.url}>
+        <link rel="canonical" href={url}>
         <ViewTransitions />
         <slot name="head" />
     </head>
