@@ -3,11 +3,11 @@ title: 'About'
 description: 'About me and this blog'
 ---
 import Layout from "../components/BaseLayout.astro";
-import avatar from "../assets/pic.jpeg";
-
+import {Image} from "astro:assets";
+import avatar from "../assets/pic.png";
 
 <Layout title="About" description="About me and this blog">
-![Ishan Jaiswal](../assets/pic.jpeg)
+<Image src={avatar} height="25" width="25" alt="Logo" /> 
 My name is **Ishan Jaiswal**, though I sometimes use the handle _**ishankbg**_ online.
 I'm a student and part-time computer programmer from India and I love to create unique and innovative softwares.
 I'm currently working at [ReMod Limited](remod.dev) on various projects. My work and side projects mostly involve working on applications at low level using Rust and C
