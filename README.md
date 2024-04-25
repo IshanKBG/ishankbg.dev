@@ -8,7 +8,7 @@ This is the source code for my personal website, [ishankbg.dev](https://ishankbg
 - **Deployment**: [Cloudflare Pages](https://pages.cloudflare.com/)
 - **Domain**: [Porkbun](https://porkbun.com/)
 - **Analytics**: [Cloudflare Analytics](https://www.cloudflare.com/en-in/web-analytics/)
-**Fonts**: [Inter](https://rsms.me/inter/)
+- **Fonts**: [Inter](https://rsms.me/inter/)
 
 ## License
 The website is open source and available under the MIT License.
