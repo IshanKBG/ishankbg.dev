@@ -73,7 +73,7 @@ int main()
 
 
 ```
- In the above example we attempts to print the value of a variable `a` after it goes out of scope. Initially, a pointer `ptr` is assigned the address of `a`. However, when the code block ends, `a` is no longer valid memory. Despite this, `ptr` still points to that freed memory, creating a dangling pointer. Dereferencing this pointer (using `*ptr`) leads to undefined behavior, which could cause a crash or unexpected results.
+ In the above example we attempt to print the value of a variable `a` after it goes out of scope. Initially, a pointer `ptr` is assigned the address of `a`. However, when the code block ends, `a` is no longer valid memory. Despite this, `ptr` still points to that freed memory, creating a dangling pointer. Dereferencing this pointer (using `*ptr`) leads to undefined behavior, which could cause a crash or unexpected results.
 ### Rust to the Rescue!
 Rust, a modern systems programming language, takes a different approach to memory management. Rust's compiler guarantees that references will never be dangling references, i.e, if you have a reference to some data, the compiler will ensure that the data will not go out of scope before the reference to the data does.
 All thanks to Rust's most unique feature called **ownership** that enables Rust to make memory safety guarantees without needing a garbage collector or manual memory management with `malloc` and `free`.
