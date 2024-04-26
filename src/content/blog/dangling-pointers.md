@@ -15,10 +15,9 @@ isDraft: false
 While learning or using C/C++, you've likely encountered dangling pointers. This post will break down dangling pointers in C/C++. We'll explain what they are, why they happen, and how languages like Rust avoid them altogether.
 
 ### What are Dangling Pointers?
- A pointer pointing to a memory location that has been freed is called a dangling pointer. This can lead to unexpected behaviour in the program, like crashes or data corruption, and can also serve as a source of serious security vulnerabilities. A prominent example is the infamous  [Heartbleed]([https://en.wikipedia.org/wiki/Heartbleed](https://en.wikipedia.org/wiki/Heartbleed)) bug (2014) in the OpenSSL cryptographic library. This bug was caused, in part, by dangling pointers. A memory deallocation error left pointers referencing freed memory, allowing attackers to access sensitive data like encryption keys. This vulnerability impacted a vast number of websites and servers, highlighting the dangers of dangling pointers. Dangling pointers can also be exploited in combination with other vulnerabilities, such as integer overflows. An integer overflow can lead to memory being allocated outside the intended bounds. If a pointer is then used to access this invalid memory, it becomes a dangling pointer, potentially allowing attackers to overwrite critical dat or execute malicious code.
-
+ A pointer pointing to a memory location that has been freed is called a dangling pointer. Using such pointers can lead to unexpected behaviour in the program, like crashes or data corruption, and may also serve as a source of serious security vulnerabilities. A prominent example is the infamous  [Heartbleed]([https://en.wikipedia.org/wiki/Heartbleed](https://en.wikipedia.org/wiki/Heartbleed)) bug (2014) in the OpenSSL cryptographic library. This bug was caused, in part, by dangling pointers. A memory deallocation error left pointers referencing freed memory, allowing attackers to access sensitive data like encryption keys. This vulnerability impacted a vast number of websites and servers, highlighting the dangers of dangling pointers. Dangling pointers can also be exploited in combination with other vulnerabilities, such as integer overflows. Integer overflow can cause memory allocation errors. When this happens, a dangling pointer might still be referencing the freed memory. If this freed memory is then used for a different allocation (which is common), code using the dangling pointer can access unintended data. The impact can be severe, especially if user input controls the pointer. Attackers could potentially exploit this to read or overwrite critical data, even execute malicious code.
 ### What causes dangling points?
-
+Dangling pointers can arise from various scenarios, including:
 #### Memory Deallocation
 
 When a memory pointed by a pointer is deallocated then it becomes a dangling pointers.
@@ -121,4 +120,7 @@ fn no_dangle() -> String {
 }
 ```
 Now it will be compiled successfully. This feature can prevent countless memory bugs caused by dangling pointers. By enforcing these checks directly within the compiler, it helps catch errors early in the development process. I'd rather grapple with compiler errors upfront than encounter bugs reported by users or, worse yet, have them go undetected entirely.
+Also I would like to mention that Rust has raw pointers, which can be __dangling__ but you need an [`unsafe`](https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html) block to use them.
 If you want to learn more about ownership then checkout this [link](https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html).
+### Acknowledgement
+I would like to thank [Andreu Botella](https://github.com/andreubotella/) for reviewing this post.
