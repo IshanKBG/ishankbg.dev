@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Schema from "../../components/schema.astro";
 import Layout from "../../components/BlogLayout.astro";
 import type {InferGetStaticPropsType} from "astro";
+import {Image} from "astro:assets";
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
     return posts.map(entry => ({
@@ -38,6 +39,8 @@ const { Content } = await entry.render();;
         <p class="font-light text-sm">Published on <time datetime={new Date(entry.data.pubDate).toISOString()}>{new Date(entry.data.pubDate).toLocaleDateString()}</time> </p>
     </header>
     <article class="prose prose-invert px-2 md:px-4 py-2 md:py-4 text-white text-md antialiased break-words">
-       <Content />
+       <Content components={{
+         img: Image
+}}
     </article>
 </Layout>
