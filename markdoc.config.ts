@@ -1,12 +1,10 @@
 import { defineMarkdocConfig, component, nodes } from '@astrojs/markdoc/config';
 import shiki from "@astrojs/markdoc/shiki";
-import { transformerCompactLineOptions } from "@shikijs/transformers";
 export default defineMarkdocConfig({
 	extends: [
 		shiki({
 			theme: 'andromeeda',
 			wrap: true,
-			transformers: [transformerCompactLineOptions()]
 		})
 
 	],
