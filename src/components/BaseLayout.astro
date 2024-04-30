@@ -49,8 +49,14 @@ const {title, description, keywords, url} = Astro.props
     </footer>
     </body>
     <style is:global>
-        body {
-            font-family: "JetBrains Mono",sans-serif;
+	    body 
+		{
+            font-family: "JetBrains Mono", sans-serif;
         }
-    </style>
+		pre code {
+    white-space: pre-wrap;
+    font-family: "JetBrains Mono", monospace !important;
+    font-size: 14px;
+}
+</style>
 </html>
