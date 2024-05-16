@@ -76,7 +76,7 @@ export function Bookmark(slug) {
 ```
 
 **Next.js** despite advertising to be *"modern"* and *"friendly"* likes to introduce complicated and heinous practices which are the polar opposite, including things like security as mentioned above. A tweet by Tom Sherman points out how **Next.js** **RSCs** allow you to easily leak secrets to the client instead of them staying on the server as you'd expect, again; bad design leads to bad practices.
-{% tweet id="https://twitter.com/tomus_sherman/status/1654211227172716545" %} {% /tweet %}
+[hi](https://twitter.com/tomus_sherman/status/1654211227172716545)
 Pardon me, but I am about to go off on an unrelated tangent. Over the past few months, or years even, **Next.js** has focused on releasing fast with more and more breaking changes, instead of slowing down with more quality changes and refinement over time, the buggy-ness of the framework has gone quite up, and the general quality took a nose dive to hell, what used to take a few hundred milliseconds for HMR now takes a solid 1-2 seconds to be accomplished. **Next.js** also seems to be against the **JavaScript** community in a way, trying to split apart and do their own thing for no reason other than *"just because"*, unlike with others finally shaking hands and collaborating with each other and using more and more shared tooling, a popular example would be **Remix** and **Angular** now using Vite internally, another would be **Solid** introducing Signals to the **JavaScript** World properly, there's a lot more examples tho, including **UnoCSS** by one of the Vue Developers.
 
 Another thing that should be accounted for is, the existence of **Turbopack**, my only question is: *Why*?
@@ -87,7 +87,7 @@ Another thing that should be accounted for is, the existence of **Turbopack**, m
 - **Rollup -> Rolldown** (A Rusty Rewrite of Rollup)
 - **Webpack -> Rspack** (A Rusty Rewrite of Webpack)
 
-{% tweet id="https://twitter.com/youyuxi/status/1587279357885657089?" %} {% /tweet %}
+[hi](https://twitter.com/youyuxi/status/1587279357885657089)
 Checkout Evan You's [benchmark](https://github.com/yyx990803/vite-vs-next-turbo-hmr) where he debunks these claims made by Vercel. 
 > Hey, isn't caching in **Next.js** good like other advertised features?
 
@@ -104,7 +104,7 @@ However, there's another option using the unstable API called [unstable_noStore]
 It's very easy to serve stale data to the user or even share private data by mistake because it's shared and persistent if you are not careful.
 This tweet by Flavio explains why it's so bad, another thing to note is that there is a GitHub [Discussion](https://github.com/Vercel/next.js/discussions/54075) which really concerns me on why this is what to is; Sad reality, honestly.
 
-{% tweet id="https://x.com/flaviocopes/status/1736317822609887362" %} {% /tweet %}
+[hi](https://twitter.com/flaviocopes/status/1736317822609887362)
 # Remix Loaders and Data Fetching
 
 About three years ago, a framework named **Remix** started catching up hype, and rightfully so for a lot of reasons, it had been around for way longer but closed source, they went open source around that time ago and with some really good clear-cut branding that aligned with their goals; Using the existing Web itself to push it forward. Naturally, they introduced web standards based solutions including their built in components and re-exports of **React Router**. One of the many good things about **Remix** were *Data Loaders*, a way to load server data without any leakage to the client, as a React Hook.
