@@ -1,7 +1,8 @@
 ---
 import  Layout  from "../../components/BaseLayout.astro";
 import { getCollection } from "astro:content";
-const allPosts = await getCollection("blog");
+const allPosts = await getCollection("blog").then((posts) => posts.sort((a, b) => Date.parse(b.data.pubDate) - Date.parse(a.data.pubDate)).slice(0, 5));
+
 ---
 <Layout
  title="Blog"
