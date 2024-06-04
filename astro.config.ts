@@ -3,7 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import embed from "astro-embed/integration"
-
+import { remarkReadingTime } from "./readming-time.mjs";
 // https://astro.build/config
 export default defineConfig({
 	site: "https://ishankbg.dev",
@@ -14,6 +14,7 @@ export default defineConfig({
 			theme: 'vitesse-dark',
 			wrap: true
 		},
+		remarkPlugins: [remarkReadingTime]
 	},
 	image: {
 		domains: ['images.unsplash.com', 'cdn.discordapp.com']
