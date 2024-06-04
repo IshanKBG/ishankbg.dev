@@ -1,0 +1,34 @@
+---
+title: Parsing Markdown in Rust
+description: We will see how to parse markdown in Rust using the markdown-rs crate.
+pubDate: 2024-06-04
+tags: 
+      - rust
+      - markdown
+      - parsing
+isDraft: true
+---
+While searching for a good markdown parser in Rust, I found the markdown-rs crate. It is a markdown parser written in Rust. It is a fast and efficient parser. It is easy to use and has good documentation.
+But why not use the `pulldown-cmark` crate? Because the `markdown-rs` crate is more feature-rich and has more options such as parsing MDX, frontmatter, and maths.
+So let's start by installing the `markdown-rs` crate.
+```sh
+cargo add markdown@1.0.0-alpha.17
+```
+Now let's see how to parse markdown using the `markdown-rs` crate.
+```rust
+fn main() -> Result<(), markdown::message::Message> {
+    println!(
+        "{}",
+        markdown::to_html_with_options(
+            "* [x] contact@example.com ~~strikethrough~~",
+            &markdown::Options::gfm(),
+            
+        )?
+    );
+
+    Ok(())
+}
+```
+The above code compiles the markdown to html using the `to_html_with_options` function. The `Options::gfm()` function is used to enable GitHub Flavored Markdown.
+It was just a simple example. But you can do a lot more complex things with the `markdown-rs` crate such as parsing MDX or even creating your own flavour. Here [https://docs.rs/markdown/1.0.0-alpha.17/markdown/struct.Options.html](checkout) the API documentation of the `markdown-rs` crate.
+
