@@ -30,5 +30,5 @@ fn main() -> Result<(), markdown::message::Message> {
 }
 ```
 The above code compiles the markdown to html using the `to_html_with_options` function. The `Options::gfm()` function is used to enable GitHub Flavored Markdown.
-It was just a simple example. But you can do a lot more complex things with the `markdown-rs` crate such as parsing MDX or even creating your own flavour. Here [checkout](https://docs.rs/markdown/1.0.0-alpha.17/markdown/struct.Options.html) the API documentation of the `markdown-rs` crate.
+It was just a simple example. But you can do a lot more complex things with the `markdown-rs` crate such as parsing MDX or even creating your own flavour. Here [https://docs.rs/markdown/1.0.0-alpha.17/markdown/struct.Options.html](checkout) the API documentation of the `markdown-rs` crate.
 
