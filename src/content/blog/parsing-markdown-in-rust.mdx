@@ -8,7 +8,7 @@ tags:
       - parsing
 isDraft: true
 ---
-While searching for a good markdown parser in Rust, I found the markdown-rs crate. It is a markdown parser written in Rust. It is a fast and efficient parser. It is easy to use and has good documentation.
+While searching for a good markdown parser in Rust, I found the markdown-rs crate. It is a markdown parser written in Rust. It is a fast and efficient parser.
 But why not use the `pulldown-cmark` crate? Because the `markdown-rs` crate is more feature-rich and has more options such as parsing MDX, frontmatter, and maths.
 So let's start by installing the `markdown-rs` crate.
 ```sh
@@ -30,5 +30,5 @@ fn main() -> Result<(), markdown::message::Message> {
 }
 ```
 The above code compiles the markdown to html using the `to_html_with_options` function. The `Options::gfm()` function is used to enable GitHub Flavored Markdown.
-It was just a simple example. But you can do a lot more complex things with the `markdown-rs` crate such as parsing MDX or even creating your own flavour. Here [checkout](https://docs.rs/markdown/1.0.0-alpha.17/markdown/struct.Options.html) the API documentation of the `markdown-rs` crate.
+It is just a simple example. But you can do a lot more complex things with the `markdown-rs` crate such as parsing MDX or even creating your own flavour. Here [checkout](https://docs.rs/markdown/1.0.0-alpha.17/markdown/struct.Options.html) the API documentation of the `markdown-rs` crate.
 
