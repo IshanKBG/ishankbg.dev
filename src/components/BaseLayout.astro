@@ -1,5 +1,6 @@
 ---
 import "@fontsource/jetbrains-mono";
+import "@fontsource/ibm-plex-mono";
 import { ViewTransitions } from "astro:transitions";
 import avatar from "../assets/avatar.png";
 import {Image} from "astro:assets";
@@ -49,10 +50,9 @@ const {title, description, keywords, url} = Astro.props
     </footer>
     </body>
     <style is:global>
-	    body 
-		{
-            font-family: "JetBrains Mono", sans-serif;
-        }
+	  body {
+  font-family: "IBM Plex Mono";
+}
 		pre code {
     white-space: pre-wrap;
     font-family: "JetBrains Mono", monospace !important;
