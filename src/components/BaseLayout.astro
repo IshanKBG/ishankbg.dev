@@ -1,6 +1,4 @@
 ---
-import "@fontsource/jetbrains-mono";
-import "@fontsource/ibm-plex-mono";
 import { ViewTransitions } from "astro:transitions";
 import avatar from "../assets/avatar.png";
 import {Image} from "astro:assets";
@@ -8,7 +6,9 @@ const {title, description, keywords, url} = Astro.props
 ---
 <html lang="en">
     <head>
-        <title>{title}</title>
+		<title>{title}</title>
+        <link rel="preconnect" href="https://rsms.me/">
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
         <link rel="sitemap" href="/sitemap-index.xml" />
         <link
                 rel="alternate"
@@ -49,14 +49,14 @@ const {title, description, keywords, url} = Astro.props
         <p class="text-center">Checkout the <a href="https://github.com/IshanKBG/ishankbg.dev">source code</a></p>
     </footer>
     </body>
-    <style is:global>
-	  body {
-  font-family: "IBM Plex Mono";
+	<style is:global>
+:root {
+  font-family: Inter, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
 }
-		pre code {
-    white-space: pre-wrap;
-    font-family: "JetBrains Mono", monospace !important;
-    font-size: 14px;
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; }
 }
+
 </style>
 </html>
