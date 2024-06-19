@@ -6,7 +6,7 @@
 		"dev": "astro dev",
 		"start": "astro dev",
 		"build": "astro check && astro build",
-		"preview": "astro preview",
+		"preview": "wrangler pages dev ./dist",
 		"astro": "astro"
 	},
 	"dependencies": {
@@ -32,7 +32,8 @@
 		"@types/markdown-it": "^14.1.1",
 		"@types/sanitize-html": "^2.11.0",
 		"schema-dts": "^1.1.2",
-		"sharp": "^0.33.4"
+		"sharp": "^0.33.4",
+		"wrangler": "^3.61.0"
 	},
 	"pnpm": {
 		"patchedDependencies": {
