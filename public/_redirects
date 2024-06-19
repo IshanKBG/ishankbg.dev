@@ -1,2 +1,3 @@
-/blog/* /archive/:splat
-/blog /archive
+/blog /archive 301
+/blog/* /archive/:splat 301
+
