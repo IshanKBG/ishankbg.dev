@@ -7,11 +7,11 @@ tags: ["sqlite", "database"]
 SQLite performs its transactions on disk and there are essentially two modes of doing this: rollback journal mode and write-ahead logging (WAL) mode.
 By default SQLite uses rollback journal mode, which is simple and safe but can be slow and not very efficient. On other hand, WAL mode is significantly faster and more efficient than rollback journal mode in most scenarios.
 WAL mode is also useful when reading and writing to the database needs to be concurrent, as it allows readers to access the database while writers are writing to it.
-Enabling WAL mode in SQLite is simple and can be done by executing the following command:
-If you have an existing database file then just run the following command:
+Enabling WAL mode in SQLite is simple and can be done by executing the following command:i
 ```bash
 sqlite3 mydb.db 'PRAGMA journal_mode=WAL;'
 ```
+
 To turn off WAL mode and revert back to rollback journal mode, you can run the following command:
 ```bash
 sqlite3 mydb.db 'PRAGMA journal_mode=DELETE;'
