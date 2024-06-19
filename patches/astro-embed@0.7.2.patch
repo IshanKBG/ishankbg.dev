@@ -1,0 +1,9 @@
+diff --git a/index.ts b/index.ts
+index 24ba8c85fdf6e0b3473e119546073410d5ea478f..dfdd122f451c13deb461955f6d8769e245c59add 100644
+--- a/index.ts
++++ b/index.ts
+@@ -1,4 +1,2 @@
+ export { Tweet } from '@astro-community/astro-embed-twitter';
+ export { YouTube } from '@astro-community/astro-embed-youtube';
+-export { Vimeo } from '@astro-community/astro-embed-vimeo';
+-export { LinkPreview } from '@astro-community/astro-embed-link-preview';
