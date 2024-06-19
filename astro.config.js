@@ -20,5 +20,7 @@ export default defineConfig({
 		domains: ['images.unsplash.com', 'cdn.discordapp.com']
 	},
 	output: "hybrid",
-	adapter: cloudflare(),
+	adapter: cloudflare({
+		imageService: "compile",
+	}),
 });
