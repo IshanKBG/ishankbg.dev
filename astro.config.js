@@ -19,9 +19,6 @@ export default defineConfig({
 	image: {
 		domains: ['images.unsplash.com', 'cdn.discordapp.com']
 	},
-	redirects: {
-		"/blog/[...slug]": "/archive/[...slug]",
-	},
 	output: "hybrid",
 	adapter: cloudflare({
 		imageService: "compile",
