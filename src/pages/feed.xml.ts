@@ -21,7 +21,7 @@ export const GET = async (context: APIContext) => {
 			}),
 			tags: post.data.tags,
 			customData: post.data.customData,
-			link: `/blog/${post.slug}/`,
+			link: `/archive/${post.slug}/`,
 		})),
 	});
 }

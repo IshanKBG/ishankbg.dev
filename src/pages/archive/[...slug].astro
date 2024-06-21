@@ -3,9 +3,10 @@ import { getCollection } from "astro:content";
 import Schema from "../../components/schema.astro";
 import Layout from "../../components/BlogLayout.astro";
 import type {InferGetStaticPropsType} from "astro";
-import {Image} from "astro:assets";
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+	const posts = await getCollection("blog", ({data}) => {
+		return import.meta.env.PROD ? data.draft !== true : true;
+	});
     return posts.map(entry => ({
         params: { slug: entry.slug }, props: { entry },
     }));
@@ -25,7 +26,8 @@ const { Content, remarkPluginFrontmatter } = await entry.render();
         "@type": "BlogPosting",
         "headline": entry.data.title,
         "datePublished": new Date(entry.data.pubDate).toISOString(),
-        "author": {
+		"dateModified": new Date(remarkPluginFrontmatter.lastModified).toISOString(),
+		"author": {
             "@type": "Person",
             "name": "Ishan Jaiswal",
             "url": `${Astro.site}/about`
@@ -39,9 +41,6 @@ const { Content, remarkPluginFrontmatter } = await entry.render();
 	<p class="font-light text-sm">Published on <time datetime={new Date(entry.data.pubDate).toISOString()}>{new Date(entry.data.pubDate).toLocaleDateString()}</time>  {remarkPluginFrontmatter.minutesRead}</p>
     </header>
     <article class="prose prose-invert px-2 md:px-4 py-2 md:py-4 text-white text-md antialiased break-words">
-       <Content components={{
-         img: Image
-	   }}
-	/>
+       <Content />
     </article>
 </Layout>

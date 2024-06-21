@@ -1,7 +1,9 @@
 ---
 import  Layout  from "../../components/BaseLayout.astro";
 import { getCollection } from "astro:content";
-const allPosts = await getCollection("blog").then((posts) => posts.sort((a, b) => Date.parse(b.data.pubDate) - Date.parse(a.data.pubDate)));
+const allPosts = await getCollection("blog", ({data}) => {
+	 return import.meta.env.PROD ? data.draft !== true : true;
+}).then((posts) => posts.sort((a, b) => Date.parse(b.data.pubDate) - Date.parse(a.data.pubDate)));
 
 ---
 <Layout
@@ -17,7 +19,7 @@ const allPosts = await getCollection("blog").then((posts) => posts.sort((a, b) =
             {allPosts.map((blog)=> (
                     <article>
                         • <time datetime={new Date(blog.data.pubDate).toISOString()}>{new Date(blog.data.pubDate).toLocaleDateString()}</time> -
-                        <a class="text-[#FFA8CE]" href=`/blog/${blog.slug}` data-astro-prefetch>
+                        <a class="text-[#FFA8CE]" href=`/archive/${blog.slug}` data-astro-prefetch>
                             {blog.data.title}
                         </a>
                     </article>

@@ -2,20 +2,20 @@ import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import { remarkReadingTime } from "./readming-time.mjs";
+import { remarkModifiedTime } from "./src/utils/modified-time.mjs";
+import { remarkReadingTime } from "./src/utils/reading-time.mjs";
 import cloudflare from "@astrojs/cloudflare";
 import embed from "astro-embed/integration";
 export default defineConfig({
 	site: "https://ishankbg.dev",
 	prefetch: true,
-	integrations: [tailwind(), sitemap(), embed(), mdx()],
-	markdown: {
+	integrations: [tailwind(), sitemap(), embed(), mdx({
 		shikiConfig: {
 			theme: 'vitesse-dark',
 			wrap: true
 		},
-		remarkPlugins: [remarkReadingTime],
-	},
+		remarkPlugins: [remarkModifiedTime, remarkReadingTime],
+	})],
 	image: {
 		domains: ['images.unsplash.com', 'cdn.discordapp.com']
 	},
