@@ -2,12 +2,12 @@ import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import { remarkModifiedTime } from "./src/utils/modified-time";
-import { remarkReadingTime } from "./src/utils/reading-time";
+import { remarkModifiedTime } from "./src/utils/modified-time.mjs";
+import { remarkReadingTime } from "./src/utils/reading-time.mjs";
 import cloudflare from "@astrojs/cloudflare";
 import embed from "astro-embed/integration";
 import remarkDirective from "remark-directive";
-import astroStarlightRemarkAsides from "./src/utils/aside";
+import astroStarlightRemarkAsides from "./src/utils/aside.mjs";
 export default defineConfig({
 	site: "https://ishankbg.dev",
 	prefetch: true,
