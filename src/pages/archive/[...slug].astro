@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Schema from "../../components/schema.astro";
 import Layout from "../../components/BlogLayout.astro";
 import type {InferGetStaticPropsType} from "astro";
+import "../../assets/aside.css";
 export async function getStaticPaths() {
 	const posts = await getCollection("blog", ({data}) => {
 		return import.meta.env.PROD ? data.draft !== true : true;

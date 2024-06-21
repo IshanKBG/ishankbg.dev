@@ -2,10 +2,12 @@ import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import { remarkModifiedTime } from "./src/utils/modified-time.mjs";
-import { remarkReadingTime } from "./src/utils/reading-time.mjs";
+import { remarkModifiedTime } from "./src/utils/modified-time";
+import { remarkReadingTime } from "./src/utils/reading-time";
 import cloudflare from "@astrojs/cloudflare";
 import embed from "astro-embed/integration";
+import remarkDirective from "remark-directive";
+import astroStarlightRemarkAsides from "./src/utils/aside";
 export default defineConfig({
 	site: "https://ishankbg.dev",
 	prefetch: true,
@@ -14,7 +16,8 @@ export default defineConfig({
 			theme: 'vitesse-dark',
 			wrap: true
 		},
-		remarkPlugins: [remarkModifiedTime, remarkReadingTime],
+		gfm: true,
+		remarkPlugins: [remarkModifiedTime, remarkReadingTime, remarkDirective, astroStarlightRemarkAsides],
 	})],
 	image: {
 		domains: ['images.unsplash.com', 'cdn.discordapp.com']

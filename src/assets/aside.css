@@ -1,0 +1,80 @@
+/* This is taken from @microflash/remark-callout-directives/themes/github/index.css and modified. Modified to work with tailwind darkMode, and match starlights <Asides/> */
+
+
+:root {
+	--callout-padding: 1em;
+	/* Default padding */
+	--callout-border-color: #cfd9de;
+	/* Default border color */
+	--callout-border-radius: 0.5rem;
+	/* Rounded corners */
+	--callout-font-size: 1rem;
+	/* Default font size */
+}
+
+@media (max-width: 768px) {
+	:root {
+		--callout-padding: 0.75em;
+		/* Smaller padding on smaller screens */
+		--callout-font-size: 0.875rem;
+		/* Smaller font size on smaller screens */
+	}
+}
+
+@media (max-width: 480px) {
+	:root {
+		--callout-padding: 0.5em;
+		/* Even smaller padding on very small screens */
+		--callout-font-size: 0.75rem;
+		/* Even smaller font size on very small screens */
+	}
+}
+
+.callout:not(.callout-rendered) {
+	padding: var(--callout-padding);
+	border: 1px solid var(--callout-border-color);
+	border-radius: var(--callout-border-radius);
+	background-color: inherit;
+	/* Inherit background color from the container */
+	color: inherit;
+	/* Inherit text color from the container */
+	font-size: var(--callout-font-size);
+	box-sizing: border-box;
+	/* Ensure padding and border are included in the element's total width and height */
+	max-width: 100%;
+	/* Ensure the callout does not exceed the container's width */
+}
+
+.callout:not(.callout-rendered)> :first-child {
+	margin-top: 0;
+}
+
+.callout:not(.callout-rendered)> :last-child {
+	margin-bottom: 0;
+}
+
+/* Specific callout types */
+.callout-note,
+.callout-success,
+.callout-caution,
+.callout-danger,
+.callout-tip {
+	--callout-border-color: inherit;
+	/* Inherit border color for specific types */
+}
+
+/* Ensure proper spacing and margins */
+.callout-content:first-child,
+.callout-content:only-child {
+	margin-block-start: 0;
+}
+
+.callout-content:last-child,
+.callout-content:only-child {
+	margin-block-end: 0;
+}
+
+/* Example styles for SVG icons */
+.callout-indicator>svg:first-of-type {
+	margin-right: 0.5rem;
+}
