@@ -4,7 +4,7 @@ import { Image } from 'astro:assets'
 import avatar from "../assets/pfp.avif"
 
 ---
-<Layout title="About" description="This page is about Ishan Jaiswal">
+<Layout title="About" description="This page is about Ishan Jaiswal" url={Astro.site}>
 	<article class="text-white prose prose-invert">
      <div class="flex justify-center items-center">
       <Image src={avatar} height="250 " width="250" alt="Logo"  />  
