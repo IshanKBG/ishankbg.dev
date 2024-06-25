@@ -55,7 +55,7 @@ int main() {
 }
 
 ``` 
-In the above example we create a student struct on the heap and then print its information. Crucially, we forget to update the pointer after deallocating the memory. Trying to access the student information through this pointer afterwards becomes dangerous - it's a dangling pointer! This can lead to crashes or unpredictable behaviour because the memory is no longer valid.
+In the above example we create a student struct on the heap and then print its information. Crucially, we forget to update the pointer after deallocating the memory. Trying to access the student information through this pointer afterwards becomes dangerous - it's a dangling pointer! This can lead to crashes or undefined behaviour because the memory is no longer valid.
 ####  Out-Of-Scope Variables
 When a variable goes out of scope the pointer pointing to that variable becomes a dangling pointer. 
 ```c
@@ -122,5 +122,6 @@ fn no_dangle() -> String {
 Now it will be compiled successfully. This feature can prevent countless memory bugs caused by dangling pointers. By enforcing these checks directly within the compiler, it helps catch errors early in the development process. I'd rather grapple with compiler errors upfront than encounter bugs reported by users or, worse yet, have them go undetected entirely.
 Also I would like to mention that Rust has raw pointers, which can be __dangling__ but you need an [`unsafe`](https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html) block to use them.
 If you want to learn more about ownership then checkout this [link](https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html).
+You could also use [cppcheck](http://cppcheck.sourceforge.net/) to detect dangling pointers in your C/C++ code.
 ### Acknowledgement
 I would like to thank [Andreu Botella](https://github.com/andreubotella/) for reviewing this post.
