@@ -25,6 +25,8 @@ const {title, description, keywords, url} = Astro.props
         <meta name="description" content={description}>
         <meta name="keywords" content={keywords}>
         <meta name="author" content="Ishan Jaiswal">
+		<link rel="canonical" href={url}>
+        <script defer src="https://umami-black-xi.vercel.app/script.js" data-website-id="6c8a1e3e-f588-47e9-93dd-2d946cad1f39" is:inline></script>
         <ViewTransitions />
         <slot name="head" />
     </head>
