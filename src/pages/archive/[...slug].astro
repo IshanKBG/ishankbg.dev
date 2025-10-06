@@ -1,47 +1,70 @@
 ---
-import { getCollection } from "astro:content";
-import Schema from "../../components/schema.astro";
-import Layout from "../../components/BlogLayout.astro";
-import type {InferGetStaticPropsType} from "astro";
-import "../../assets/aside.css";
+import { getCollection } from "astro:content"
+import Schema from "../../components/schema.astro"
+import type { CollectionEntry } from "astro:content"
+import Layout from "../../components/BlogLayout.astro"
+import type { InferGetStaticPropsType } from "astro"
+import "../../assets/aside.css"
 export async function getStaticPaths() {
-	const posts = await getCollection("blog", ({data}) => {
-		return import.meta.env.PROD ? data.draft !== true : true;
-	});
-    return posts.map(entry => ({
-        params: { slug: entry.slug }, props: { entry },
-    }));
+	const posts = await getCollection(
+		"blog",
+		({ data }: { data: Record<string, any> }) => {
+			return import.meta.env.PROD ? data.draft !== true : true
+		},
+	)
+	return posts.map((entry: { slug: any }) => ({
+		params: { slug: entry.slug },
+		props: { entry },
+	}))
 }
-const { entry } = Astro.props as InferGetStaticPropsType<typeof getStaticPaths> ;
-const { Content, remarkPluginFrontmatter } = await entry.render();
----
-<Layout
-        title={entry.data.title}
-        description={entry.data.description}
-        keywords={entry.data.tags}
-        url={`https://ishankbg.dev/blog/${entry.slug}`}
->
-    <Schema
-    item={{
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": entry.data.title,
-        "datePublished": new Date(entry.data.pubDate).toISOString(),
-		"dateModified": new Date(remarkPluginFrontmatter.lastModified).toISOString(),
-		"author": {
-            "@type": "Person",
-            "name": "Ishan Jaiswal",
-            "url": `${Astro.site}/about`
-        },
-        "description": entry.data.description,
-    }}
-    />
 
-    <header class="flex flex-col gap-4">
-        <h1 class="text-2xl md:text-4xl font-bold text-white">{entry.data.title }</h1>
-	<p class="font-light text-sm">Published on <time datetime={new Date(entry.data.pubDate).toISOString()}>{new Date(entry.data.pubDate).toLocaleDateString()}</time>  {remarkPluginFrontmatter.minutesRead}</p>
-    </header>
-    <article class="prose prose-invert px-2 md:px-4 py-2 md:py-4 text-white text-md antialiased break-words">
-       <Content />
-    </article>
+const { entry } = Astro.props as { entry: CollectionEntry<"blog"> }
+const { Content, remarkPluginFrontmatter } = await entry.render()
+---
+
+<Layout
+	title={entry.data.title}
+	description={entry.data.description}
+	keywords={entry.data.tags}
+	url={`https://ishankbg.dev/blog/${entry.slug}`}
+>
+	<Schema
+		item={{
+			"@context": "https://schema.org",
+			"@type": "BlogPosting",
+			headline: entry.data.title,
+			datePublished: new Date(entry.data.pubDate).toISOString(),
+			dateModified: new Date(
+				remarkPluginFrontmatter.lastModified,
+			).toISOString(),
+			author: {
+				"@type": "Person",
+				name: "Ishan Jaiswal",
+				url: `${Astro.site}/about`,
+			},
+			description: entry.data.description,
+		}}
+	/>
+
+	<header class="flex flex-col gap-4">
+		<h1 class="text-2xl md:text-4xl font-bold">
+			{entry.data.title}
+		</h1>
+		<p class="font-light text-sm">
+			Published on <time
+				datetime={new Date(entry.data.pubDate).toISOString()}
+				>{new Date(entry.data.pubDate).toLocaleDateString()}</time
+			>
+			{remarkPluginFrontmatter.minutesRead}
+		</p>
+	</header>
+	<article class="prose prose-invert text-md antialiased break-words">
+		<Content />
+	</article>
+
+	<style is:inline>
+		.prose {
+			max-width: 100% !important;
+		}
+	</style>
 </Layout>

@@ -1,6 +1,5 @@
 /* This is taken from @microflash/remark-callout-directives/themes/github/index.css and modified. Modified to work with tailwind darkMode, and match starlights <Asides/> */
 
-
 :root {
 	--callout-padding: 1em;
 	/* Default padding */
@@ -45,11 +44,11 @@
 	/* Ensure the callout does not exceed the container's width */
 }
 
-.callout:not(.callout-rendered)> :first-child {
+.callout:not(.callout-rendered) > :first-child {
 	margin-top: 0;
 }
 
-.callout:not(.callout-rendered)> :last-child {
+.callout:not(.callout-rendered) > :last-child {
 	margin-bottom: 0;
 }
 
@@ -75,6 +74,6 @@
 }
 
 /* Example styles for SVG icons */
-.callout-indicator>svg:first-of-type {
+.callout-indicator > svg:first-of-type {
 	margin-right: 0.5rem;
 }

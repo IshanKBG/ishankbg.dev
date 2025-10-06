@@ -1,29 +1,63 @@
 ---
-import  Layout  from "../../components/BaseLayout.astro";
-import { getCollection } from "astro:content";
-const allPosts = await getCollection("blog", ({data}) => {
-	 return import.meta.env.PROD ? data.draft !== true : true;
-}).then((posts) => posts.sort((a, b) => Date.parse(b.data.pubDate) - Date.parse(a.data.pubDate)));
-
+import Layout from "../../components/BaseLayout.astro"
+import { getCollection } from "astro:content"
+const allPosts = await getCollection(
+	"blog",
+	({
+		data,
+	}: {
+		data: { draft?: boolean; pubDate: string; title: string }
+	}) => {
+		return import.meta.env.PROD ? data.draft !== true : true
+	},
+).then((posts: any[]) =>
+	posts.sort(
+		(a: { data: { pubDate: string } }, b: { data: { pubDate: string } }) =>
+			Date.parse(b.data.pubDate) - Date.parse(a.data.pubDate),
+	),
+)
 ---
+
 <Layout
- title="Blog"
- description="A collection of articles written by me."
- url=`${Astro.site}/archive`
+	title="Blog"
+	description="A collection of articles written by me."
+	url=`${Astro.site}/archive`
 >
-    <div class="flex flex-col gap-4" aria-label="Recent Articles">
-        <h2 class="text-[#d6bf64] text-xl">
-            Articles
-        </h2>
-        <div class="flex flex-col gap-4">
-            {allPosts.map((blog)=> (
-                    <article>
-                        • <time datetime={new Date(blog.data.pubDate).toISOString()}>{new Date(blog.data.pubDate).toLocaleDateString()}</time> -
-                        <a class="text-[#FFA8CE]" href=`/archive/${blog.slug}` data-astro-prefetch>
-                            {blog.data.title}
-                        </a>
-                    </article>
-            ))}
-        </div>
-    </div>
+	<div class="flex flex-col gap-4" aria-label="Recent Articles">
+		<h2 class="text-xl">Articles</h2>
+		<div class="flex flex-col gap-4">
+			{
+				allPosts.map(
+					(blog: {
+						data: {
+							pubDate: string | number | Date
+							title: unknown
+						}
+						slug: any
+					}) => (
+						<article>
+							•{" "}
+							<time
+								datetime={new Date(
+									blog.data.pubDate,
+								).toISOString()}
+							>
+								{new Date(
+									blog.data.pubDate,
+								).toLocaleDateString()}
+							</time>{" "}
+							-
+							<a
+								class=""
+								href={`/archive/${blog.slug}`}
+								data-astro-prefetch
+							>
+								{blog.data.title}
+							</a>
+						</article>
+					),
+				)
+			}
+		</div>
+	</div>
 </Layout>

@@ -1,8 +1,8 @@
 /* based on https://github.com/Microflash/remark-callout-directives */
 /* inspired by https://github.com/withastro/starlight/blob/main/packages/starlight/integrations/asides.ts */
 
-import { visit } from "unist-util-visit";
-import { h } from "hastscript";
+import { visit } from "unist-util-visit"
+import { h } from "hastscript"
 
 /**
  * adds callouts for asides just like starlight
@@ -21,14 +21,14 @@ export default function astroStarlightRemarkAsides() {
 		visit(tree, (node) => {
 			if (node.type === "containerDirective") {
 				if (!callouts[node.name]) {
-					return;
+					return
 				}
 
-				const callout = callouts[node.name];
-				const data = node.data || (node.data = {});
-				const { ...attributes } = node.attributes;
+				const callout = callouts[node.name]
+				const data = node.data || (node.data = {})
+				const { ...attributes } = node.attributes
 				// logic to support :::tip{title="title"} syntax and default to Tip for :::tip
-				let title = node.attributes.title || callout.title;
+				let title = node.attributes.title || callout.title
 
 				node.attributes = {
 					...attributes,
@@ -36,24 +36,24 @@ export default function astroStarlightRemarkAsides() {
 						"class" in attributes
 							? `callout callout-${node.name} ${attributes.class}`
 							: `callout callout-${node.name}`,
-				};
+				}
 
 				// logic to support :::tip[title] syntax
 				// remark-directive converts a container’s “label” to a paragraph at children[0] with the `directiveLabel` property set to true
 				if (node.children[0].data?.directiveLabel) {
-					title = node.children[0].children[0].value;
-					node.children.shift();
+					title = node.children[0].children[0].value
+					node.children.shift()
 				}
 
-				node.children = generate(title, node.children, callout.icon);
+				node.children = generate(title, node.children, callout.icon)
 
 				// TO DO: maybe get rid of h just make it set the classes in hProperties without needing hast
-				const hast = h("aside", node.attributes);
-				data.hName = hast.tagName;
-				data.hProperties = hast.properties;
+				const hast = h("aside", node.attributes)
+				data.hName = hast.tagName
+				data.hProperties = hast.properties
 			}
-		});
-	};
+		})
+	}
 }
 
 const callouts = {
@@ -77,13 +77,13 @@ const callouts = {
 		title: "Tip",
 		icon: `<svg viewBox="0 0 16 16" width="24" height="24" aria-hidden="true" fill="currentColor"><path d="M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"></path></svg>`,
 	},
-};
+}
 
 function generate(title, children, icon) {
 	const iconNode = {
 		type: "html",
 		value: icon,
-	};
+	}
 
 	const titleNode = {
 		type: "paragraph",
@@ -97,7 +97,7 @@ function generate(title, children, icon) {
 			hName: "span",
 			hProperties: { className: ["callout-title"] },
 		},
-	};
+	}
 
 	return [
 		{
@@ -116,5 +116,5 @@ function generate(title, children, icon) {
 			},
 			children,
 		},
-	];
+	]
 }
