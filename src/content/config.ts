@@ -10,6 +10,15 @@ const blogCollection = defineCollection({
 		draft: z.boolean().optional().default(false),
 	},
 })
+
+const aboutCollection = defineCollection({
+	type: "content",
+	schema: {
+		title: z.string(),
+	},
+})
+
 export const collection = {
 	blog: blogCollection,
+	about: aboutCollection,
 }

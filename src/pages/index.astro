@@ -1,13 +1,13 @@
 ---
 import Layout from "../components/BaseLayout.astro"
-import { getCollection } from "astro:content"
-const allPosts = await getCollection("blog", ({ data }: { data: any }) => {
-	return import.meta.env.PROD ? data.draft !== true : true
-}).then((posts: any[]) =>
-	posts
-		.sort((a, b) => Date.parse(b.data.pubDate) - Date.parse(a.data.pubDate))
-		.slice(0, 5),
-)
+import { getEntry } from "astro:content"
+import avatar from "../assets/pfp.avif"
+
+const pfp = avatar.src
+
+const aboutEntry = await getEntry("pages", "about")
+const { Content } = await aboutEntry.render()
+
 export const LINKS = [
 	{
 		title: "GitHub",
@@ -53,72 +53,56 @@ export const SKILLS = [
 	description="My Personal space where I can share pieces of my mind."
 	url={Astro.site}
 >
-	<section class="flex flex-col gap-4 mb-4">
-		<p class="text-[#] text-3xl font-bold">Ishan Jaiswal</p>
-
-		<p class="text-[#FBF0C6]">Passionate Computer Programmer</p>
-	</section>
-	<section class="flex flex-col gap-4" aria-label="Recent Articles">
-		<h2 class="text-[#d6bf64] text-xl font-bold">Recent Articles</h2>
-		<div class="flex flex-col gap-4">
-			{
-				allPosts.map(
-					(blog: {
-						data: {
-							pubDate: string | number | Date
-							title: unknown
+	<section>
+		<h1 class="text-2xl font-bold">
+			Hi, I'm <span class="ml-2 text-4xl font-extrabold">Ishan Jaiswal</span>
+		</h1>
+		<section class="grid grid-cols-[70%_30%] gap-8 items-start">
+			<div class="flex flex-col gap-4">
+				<hr class="border-gray-700 h-full my-4" />
+				<Content />
+				<section class="mt-6">
+					<h2 class="text-2xl font-bold mb-2">Links</h2>
+					<div class="flex flex-wrap gap-2">
+						{
+							LINKS.map((link) => (
+								<a
+									href={link.url}
+									class="inline-block bg-[#0f62fe] text-white uppercase font-mono text-xs px-2 py-1 rounded-full hover:bg-[#0353e9] transition-all duration-200 ease-in-out"
+								>
+									{link.title}
+								</a>
+							))
 						}
-						slug: any
-					}) => (
-						<div>
-							•{" "}
-							<time
-								datetime={new Date(
-									blog.data.pubDate,
-								).toISOString()}
-							>
-								{new Date(
-									blog.data.pubDate,
-								).toLocaleDateString()}
-							</time>{" "}
-							-
-							<a
-								class="text-[#FFA8CE]"
-								href={`/archive/${blog.slug}`}
-								data-astro-prefetch
-							>
-								{blog.data.title}
-							</a>
-						</div>
-					),
-				)
-			}
-		</div>
-	</section>
-	<section class="flex flex-col gap-4" aria-label="Quick Links">
-		<h2 class="text-[#d6bf64] text-xl font-bold">Quick Links</h2>
-
-		<div class="flex flex-col">
-			{
-				LINKS.map((link) => (
-					<div>
-						•
-						<a class="text-[#FFA8CE]" href={`${link.url}`}>
-							{link.title}
-						</a>
 					</div>
-				))
-			}
-		</div>
-	</section>
-	<section class="flex flex-col gap-4">
-		<h2 class="text-[#d6bf64] text-xl font-bold">Skills</h2>
-		<div class="flex flex-wrap gap-4">
-			{
-				SKILLS.map((skill) => (
-					<div class="bg-[d6bf64] p-2 rounded-md">{skill}</div>
-				))
-			}
-		</div>
+				</section>
+				<section class="mt-6">
+					<h2 class="text-2xl font-bold mb-2">
+						Skills & Technologies
+					</h2>
+					<div class="flex flex-wrap gap-2">
+						{
+							SKILLS.map((skill) => (
+								<span class="inline-block bg-gray-700 text-white uppercase font-mono text-xs px-2 py-1 rounded-full">
+									{skill}
+								</span>
+							))
+						}
+					</div>
+				</section>
+			</div>
+			<div class="pfp" style={`background-image: url('${pfp}');`}></div>
+		</section>
 	</section>
 </Layout>
+
+<style>
+	.pfp {
+		width: 100%;
+		aspect-ratio: 1 / 1;
+		background-size: cover;
+		background-position: top;
+		border-radius: 50%;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+</style>

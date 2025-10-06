@@ -9,13 +9,21 @@ const allPosts = await getCollection(
 		data: { draft?: boolean; pubDate: string; title: string }
 	}) => {
 		return import.meta.env.PROD ? data.draft !== true : true
-	},
+	}
 ).then((posts: any[]) =>
 	posts.sort(
 		(a: { data: { pubDate: string } }, b: { data: { pubDate: string } }) =>
-			Date.parse(b.data.pubDate) - Date.parse(a.data.pubDate),
-	),
+			Date.parse(b.data.pubDate) - Date.parse(a.data.pubDate)
+	)
 )
+
+interface PostData {
+	title: string
+	description: string
+	pubDate: string
+	isDraft?: boolean
+	tags: string[]
+}
 ---
 
 <Layout
@@ -24,39 +32,46 @@ const allPosts = await getCollection(
 	url=`${Astro.site}/archive`
 >
 	<div class="flex flex-col gap-4" aria-label="Recent Articles">
-		<h2 class="text-xl">Articles</h2>
-		<div class="flex flex-col gap-4">
+		<section>
+			<h1 class="text-3xl font-bold mb-2">Archive, Blog and Thoughts.</h1>
+			<p class="text-gray-300">
+				A collection of articles written by me on various topics
+				including technology, programming, and personal experiences.
+			</p>
+		</section>
+		<hr class="border-gray-700 my-4" />
+		<div class="grid grid-cols-1 gap-4">
 			{
-				allPosts.map(
-					(blog: {
-						data: {
-							pubDate: string | number | Date
-							title: unknown
-						}
-						slug: any
-					}) => (
-						<article>
-							•{" "}
-							<time
-								datetime={new Date(
-									blog.data.pubDate,
-								).toISOString()}
-							>
-								{new Date(
-									blog.data.pubDate,
-								).toLocaleDateString()}
-							</time>{" "}
-							-
-							<a
-								class=""
-								href={`/archive/${blog.slug}`}
-								data-astro-prefetch
-							>
+				allPosts.map((blog: { data: PostData; slug: any }) => (
+					<article class="border border-gray-700 rounded-lg p-4 hover:border-[#0f62fe] transition-all duration-200 ease-in-out">
+						<a href={`/archive/${blog.slug}`}>
+							<h3 class="text-lg font-semibold mb-2">
 								{blog.data.title}
-							</a>
-						</article>
-					),
-				)
+							</h3>
+							<p class="text-sm text-gray-500 mb-4">
+								Published on{" "}
+								{new Date(blog.data.pubDate).toLocaleDateString(
+									undefined,
+									{
+										year: "numeric",
+										month: "long",
+										day: "numeric",
+									}
+								)}
+							</p>
+							<p class="text-gray-300 mb-2">
+								{blog.data.description}
+							</p>
+							<section class="mt-6">
+								{blog.data.tags.map((tag: string) => (
+									<span class="inline-block bg-[#0f62fe] text-white uppercase font-mono text-xs px-2 py-1 rounded-full mr-2 mb-2">
+										{tag}
+									</span>
+								))}
+							</section>
+						</a>
+					</article>
+				))
 			}
 		</div>
 	</div>
